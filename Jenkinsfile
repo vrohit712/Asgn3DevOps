@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/vrohit712/Asgn3DevOps.git'
+                git branch: '*/master', url: 'https://github.com/vrohit712/Asgn3DevOps.git'
             }
         }
         stage('Build') {
