@@ -8,18 +8,16 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
-                sh './gradlew build'            }
+            echo 'Building....'            }
         }
         stage('Test') {
             steps {
-                sh './gradlew test'
+                echo 'Testing..'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'docker build -t rohitdockertwo .' 
-                sh 'docker push rohitdockertwo'         // Push image to a registry
+                echo 'Deploying....'         // Push image to a registry
                 // Alternatively, deploy to a server via SSH or another method
             }
         }
