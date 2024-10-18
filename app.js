@@ -1,14 +1,32 @@
-const express = require('express');
-const path = require('path');
-const app = express();
+(function() {
+    let screen = document.querySelector('.screen');
+    let buttons = document.querySelectorAll('.btn');
+    let clear = document.querySelector('.btn-clear');
+    let equal = document.querySelector('.btn-equal');
 
-// Set up the server to serve the static HTML file
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
+buttons.forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            let value = e.target.dataset.num;
+            if (value !== undefined) {
+                screen.value += value;
+            }
+        });
+    });
 
-// Set up the server to listen on port 3000
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+equal.addEventListener('click', function(e) {
+        if (screen.value === '') {
+            screen.value = "Please enter";
+        } else {
+            try {
+                let answer = eval(screen.value);
+                screen.value = answer;
+            } catch (error) {
+                screen.value = "Error";
+            }
+        }
+    });
+
+clear.addEventListener('click', function(e) {
+        screen.value = "";
+    });
+})()
